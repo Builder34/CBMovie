@@ -12,21 +12,6 @@
 
 @interface AppDelegate ()
 
-/**
- *  code data
- **/
-@property (readonly,strong,nonatomic) NSManagedObjectContext *managedObjectContext ;  //管理数据内容
-@property (readonly,strong,nonatomic) NSManagedObjectModel *managedObjectModel ;  //管理数据模型
-@property (readonly,strong,nonatomic) NSPersistentStoreCoordinator *persistentStoreCoordinator ; //持久性数据协调器
-
-//保存code data数据的方法
-- (void) saveContext  ;
-//
-- (NSURL *) applicationDocumentsDirectory ;
-
-/**
- *
- **/
 
 @end
 

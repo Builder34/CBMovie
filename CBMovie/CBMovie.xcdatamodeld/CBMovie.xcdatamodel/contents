@@ -1,4 +1,10 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <model userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="6751" systemVersion="14C109" minimumToolsVersion="Xcode 4.3" macOSVersion="Automatic" iOSVersion="Automatic">
-    <elements/>
+    <entity name="LocationEntity" representedClassName="LocationEntity" syncable="YES">
+        <attribute name="lat" optional="YES" attributeType="Float" defaultValueString="0.0" syncable="YES"/>
+        <attribute name="lng" optional="YES" attributeType="Float" defaultValueString="0.0" syncable="YES"/>
+    </entity>
+    <elements>
+        <element name="LocationEntity" positionX="-1611" positionY="-504" width="128" height="73"/>
+    </elements>
 </model>

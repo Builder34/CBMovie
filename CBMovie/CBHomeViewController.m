@@ -12,7 +12,13 @@
 #import <CoreLocation/CoreLocation.h>
 #import "MBProgressHUD.h"
 #import "MovieOfCityModel.h"
+#import "MovieModel.h"
 
+#import "LocationEntity.h"
+#import "AppDelegate.h"
+
+#import "CBHotShowingCell.h"
+#import "SDWebImage/UIImageView+WebCache.h"
 
 @interface CBHomeViewController ()<CLLocationManagerDelegate,UITableViewDelegate,UITableViewDataSource,MBProgressHUDDelegate>
 
@@ -24,6 +30,11 @@
 @property (nonatomic,strong) UITableView *mainTableView ; //主体表格
 
 @property (nonatomic,strong) MBProgressHUD *mbProgress ;
+
+@property (nonatomic,strong) MovieOfCityModel *movie ; //电影数据
+
+//code data context
+@property (strong,nonatomic) NSManagedObjectContext *context ;
 
 @end
 
@@ -39,13 +50,15 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-
+    
     [self settingLayout] ;
     [self settingProgerss] ;
-    
     [self getLocation] ;
     
-    //[self requestData] ;
+    //这里需要引入自己项目的委托，就是让全局managedObjectContext起作用
+    AppDelegate *appDelegate = (AppDelegate *)[[UIApplication sharedApplication] delegate] ;
+    self.context = appDelegate.managedObjectContext ;
+    
 }
 //请求数据
 - (void) requestData{
@@ -61,8 +74,25 @@
         if ([responseObject[@"error"] intValue] == 0) {
             NSLog(@"请求成功！") ;
             NSError *err = nil ;
-           // MovieOfCityModel *movie = [[MovieOfCityModel alloc] initWithString:responseObject[@"result"] error:&err] ;
-            MovieOfCityModel *movie = [[MovieOfCityModel alloc] initWithDictionary:responseObject[@"result"] error:&err] ;
+            
+            _movie = [[MovieOfCityModel alloc] initWithDictionary:responseObject[@"result"] error:&err] ;
+            LocationEntity *locationEntity = [NSEntityDescription insertNewObjectForEntityForName:@"LocationEntity" inManagedObjectContext:_context] ;
+            [_mainTableView reloadData] ; //更新表格数据
+            locationEntity.lat = [NSNumber numberWithFloat:_movie.location.lat] ;
+            locationEntity.lng = [NSNumber numberWithFloat:_movie.location.lng] ;
+            NSError *contextError = nil ;
+            if (![_context save:&contextError]) {
+                NSLog(@"%@",[contextError localizedDescription]) ;
+            }
+//            NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init] ;
+//            NSEntityDescription *entity = [NSEntityDescription entityForName:@"LocationEntity" inManagedObjectContext:_context] ;
+//            [fetchRequest setEntity:entity] ;
+//            
+//            NSArray *fetchObject = [_context executeFetchRequest:fetchRequest error:&contextError] ;
+//            for (NSManagedObject *info in fetchObject) {
+//                NSLog(@"entity lat: %@",[info valueForKey:@"lat"]) ;
+//                NSLog(@"entity lng: %@",[info valueForKey:@"lng"]) ;
+//            }
 
         }
         
@@ -131,6 +161,10 @@
 //设置布局
 - (void) settingLayout{
     _mainTableView =[[UITableView alloc] initWithFrame:tabBarMainFrame style:UITableViewStylePlain] ;
+    //注册加载自定义cell的xib文件
+    UINib *nib = [UINib nibWithNibName:@"CBHotShowingCell" bundle:nil] ;
+    [_mainTableView registerNib:nib forCellReuseIdentifier:@"hotShowingCell"] ;
+    
     _mainTableView.dataSource = self ;
     _mainTableView.delegate = self ;
     
@@ -148,27 +182,29 @@
 - (CGFloat) tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section{
     return 0.1 ;
 }
+- (CGFloat) tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
+    return 79 ;
+}
 #pragma mark - UITableViewDataSource
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
-    return 12 ;
+    NSLog(@"行数：%lu",(unsigned long)[_movie.movie count]) ;
+    return [_movie.movie count] ;
 }
 - (NSInteger) numberOfSectionsInTableView:(UITableView *)tableView{
     return 1 ;
 }
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"cellIdentify"] ;
-    if(cell==nil){
-        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:@"cellIdentify"] ;
-        if (indexPath.row == 2) {
-            UILabel *title = [[UILabel alloc] initWithFrame:CGRectMake((UISCREENWIDTH-200)/2, 0, 200, 44)] ;
-            title.text = @"MBProgressHUD" ;
-            title.textAlignment = NSTextAlignmentCenter ;
-            title.textColor = [UIColor grayColor] ;
-            [cell.contentView addSubview:title] ;
-            
-        }
-    }
+    
+    CBHotShowingCell *cell = [tableView dequeueReusableCellWithIdentifier:@"hotShowingCell"] ;
+    MovieModel *movieModel = self.movie.movie[indexPath.row] ;
+    cell.movieName.text = [NSString stringWithFormat:@"名称：%@",movieModel.movie_name] ;
+    cell.movieType.text = [NSString stringWithFormat:@"%@  %@",movieModel.movie_type,movieModel.is_imax?@"IMAX":@""] ;
+    
+    //SDWebImage库
+    [cell.movieImage sd_setImageWithURL:[NSURL URLWithString:movieModel.movie_picture] placeholderImage:[UIImage imageNamed:@"movie-default"]] ;
+
     return cell ;
+    
 }
 //设置加载提示
 - (void) settingProgerss{
