@@ -8,7 +8,10 @@
 
 #import "CBNewsViewController.h"
 
+
 @interface CBNewsViewController ()
+
+@property (nonatomic,strong) ZBarReaderViewController *QRCodeReader ;
 
 @end
 
@@ -24,22 +27,36 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // Do any additional setup after loading the view.
+    UIButton *button = [[UIButton alloc] initWithFrame:CGRectMake(0, 64, UISCREENWIDTH, UISCREENHEIGHT)] ;
+    [button addTarget:self action:@selector(clickScan:) forControlEvents:UIControlEventTouchUpInside] ;
+    [self.view addSubview:button] ;
+    
+    
+}
+//点击扫描按钮事件
+- (void)clickScan:(id)sender{
+    
+    self.QRCodeReader = [[ZBarReaderViewController alloc] init] ;
+    self.QRCodeReader.readerDelegate = self ;
+    ZBarImageScanner *scanner = self.QRCodeReader.scanner ;
+    [scanner setSymbology:ZBAR_I25 config:ZBAR_CFG_ENABLE to:0] ;
+    [self presentViewController:_QRCodeReader animated:YES completion:nil] ;
+    
+}
+#pragma mark - ZBarReaderDelegate 实现
+- (void) imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info{
+    
+    id<NSFastEnumeration> result = [info objectForKey:ZBarReaderControllerResults] ;
+    ZBarSymbol *symbol = nil ;
+    for (symbol in result) {
+        [self.QRCodeReader dismissViewControllerAnimated:YES completion:nil] ;
+        break ;
+    }
+    
 }
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
-
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
-
 @end

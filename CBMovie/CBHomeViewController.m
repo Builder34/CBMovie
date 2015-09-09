@@ -19,6 +19,7 @@
 
 #import "CBHotShowingCell.h"
 #import "SDWebImage/UIImageView+WebCache.h"
+#import "CBHttpDataRequestManager.h"
 
 @interface CBHomeViewController ()<CLLocationManagerDelegate,UITableViewDelegate,UITableViewDataSource,MBProgressHUDDelegate>
 
@@ -62,6 +63,7 @@
 }
 //请求数据
 - (void) requestData{
+
     NSURL *baseUrl = [NSURL URLWithString:baiduAPI] ;
     
     AFHTTPRequestOperationManager *operationManager = [[AFHTTPRequestOperationManager alloc]  initWithBaseURL:baseUrl] ;

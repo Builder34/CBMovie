@@ -7,7 +7,8 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "ZBarSDK.h"
 
-@interface CBNewsViewController : UIViewController
+@interface CBNewsViewController : UIViewController<ZBarReaderDelegate>
 
 @end

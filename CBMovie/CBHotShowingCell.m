@@ -13,12 +13,16 @@
 - (void)awakeFromNib {
     //self.movieImage.layer.cornerRadius = 29.0f ;
     //self.movieImage.layer.masksToBounds = YES ;
+
 }
+
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {
     [super setSelected:selected animated:animated];
-
-    // Configure the view for the selected state
+    
 }
 
+- (IBAction)clickBtn:(id)sender {
+
+}
 @end
