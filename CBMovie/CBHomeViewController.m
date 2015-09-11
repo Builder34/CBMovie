@@ -47,7 +47,7 @@
 - (instancetype) initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil{
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil] ;
     if(self){
-        _oldOffsetY = 0 ;
+
     }
     return self ;
 }
@@ -58,6 +58,11 @@
     self.titleView.leftButton = nil ;
     
     _lastContentOffsetY = 0 ;
+    _oldOffsetY = 0 ;
+    self.homeScrollView = [[UIScrollView alloc] initWithFrame:CGRectMake(0,64+59, UISCREENWIDTH, UISCREENHEIGHT-64-59-49)] ;
+    self.homeScrollView.backgroundColor = [UIColor grayColor] ;
+    [self.view addSubview:_homeScrollView] ;
+    
     
     [self settingLayout] ;
     [self settingProgerss] ;
@@ -81,7 +86,7 @@
     AFHTTPRequestOperation *operation = [operationManager GET:@"movie" parameters:@{@"qt":@"hot_movie",@"location":[NSString stringWithFormat:@"%f,%f",_longitude,_latitude],@"ak":@"Xvm0dTWbPHP4Lez6Ffk1BjVO",@"output":@"json"} success:^(AFHTTPRequestOperation *operation, id responseObject) {
         [_mbProgress hide:YES] ;
         if ([responseObject[@"error"] intValue] == 0) {
-            NSLog(@"请求成功！") ;
+            //NSLog(@"请求成功！") ;
             NSError *err = nil ;
             
             _movie = [[MovieOfCityModel alloc] initWithDictionary:responseObject[@"result"] error:&err] ;
@@ -131,7 +136,7 @@
 - (void) locationManager:(CLLocationManager *)manager didUpdateLocations:(NSArray *)locations{
     
     CLLocation *currentLocation = [locations lastObject] ;
-    NSLog(@"经度:%f,纬度: %f,高度:%f",currentLocation.coordinate.latitude,currentLocation.coordinate.longitude,currentLocation.altitude) ;
+    //NSLog(@"经度:%f,纬度: %f,高度:%f",currentLocation.coordinate.latitude,currentLocation.coordinate.longitude,currentLocation.altitude) ;
     _latitude = currentLocation.coordinate.latitude ;
     _longitude = currentLocation.coordinate.longitude ;
     
@@ -169,7 +174,7 @@
 
 //设置布局
 - (void) settingLayout{
-    _mainTableView =[[UITableView alloc] initWithFrame:CGRectMake(0, CGRectGetMaxY(self.titleView.frame), UISCREENWIDTH, UISCREENHEIGHT-CGRectGetMaxY(self.titleView.frame)-49) style:UITableViewStylePlain] ;
+    _mainTableView =[[UITableView alloc] initWithFrame:CGRectMake(0, 0, UISCREENWIDTH,self.homeScrollView.frame.size.height) style:UITableViewStylePlain] ;
     //注册加载自定义cell的xib文件
     UINib *nib = [UINib nibWithNibName:@"CBHotShowingCell" bundle:nil] ;
     [_mainTableView registerNib:nib forCellReuseIdentifier:@"hotShowingCell"] ;
@@ -180,12 +185,12 @@
     _mainTableView.tableHeaderView = nil ;
     
     NSLog(@"_maunTableView y : %f  height : %f",_mainTableView.frame.origin.y,_mainTableView.frame.size.height) ;
-    [self.view addSubview:_mainTableView] ;
+    [self.homeScrollView addSubview:_mainTableView] ;
 }
 #pragma mark - UITableViewDelegate
 - (void) tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     if (indexPath.row == 2) {
-        NSLog(@"第3行cell被点击...") ;
+        //NSLog(@"第3行cell被点击...") ;
     }
 }
 - (CGFloat) tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section{
@@ -246,9 +251,10 @@
                      self.titleView.frame = CGRectMake(titleFrame.origin.x, titleFrame.origin.y-64, UISCREENWIDTH, 44) ;
                 }
                 self.tabBarController.tabBar.hidden = YES ;
-                CGRect tableFrame = self.mainTableView.frame ;
-                if(tableFrame.origin.y == 64){
-                    self.mainTableView.frame = CGRectMake(tableFrame.origin.x, tableFrame.origin.y-44, tableFrame.size.width, tableFrame.size.height+44+49) ;
+                CGRect scrollFrame = self.homeScrollView.frame ;
+                if(scrollFrame.origin.y == 123){
+                    self.homeScrollView.frame = CGRectMake(scrollFrame.origin.x, scrollFrame.origin.y-44, scrollFrame.size.width, scrollFrame.size.height+44+49) ;
+                    self.mainTableView.frame = CGRectMake(self.mainTableView.frame.origin.x, self.mainTableView.frame.origin.y, self.mainTableView.frame.size.width, self.homeScrollView.frame.size.height) ;
                 }
 
             } completion:^(BOOL finished) {
@@ -264,9 +270,10 @@
                     self.titleView.frame = CGRectMake(titleFrame.origin.x, titleFrame.origin.y+64, UISCREENWIDTH, 44) ;
                 }
                 self.tabBarController.tabBar.hidden = NO ;
-                CGRect tableFrame = self.mainTableView.frame ;
-                if(tableFrame.origin.y == 20){
-                    self.mainTableView.frame = CGRectMake(tableFrame.origin.x, tableFrame.origin.y+44, tableFrame.size.width, tableFrame.size.height-44-49) ;
+                CGRect scrollFrame = self.homeScrollView.frame ;
+                if(scrollFrame.origin.y == 79){
+                    self.homeScrollView.frame = CGRectMake(scrollFrame.origin.x, scrollFrame.origin.y+44, scrollFrame.size.width, scrollFrame.size.height-44-49) ;
+                    self.mainTableView.frame = CGRectMake(self.mainTableView.frame.origin.x, self.mainTableView.frame.origin.y, self.mainTableView.frame.size.width, self.homeScrollView.frame.size.height) ;
                 }
             } completion:^(BOOL finished) {
 

@@ -11,4 +11,6 @@
 
 @interface CBHomeViewController : RootController
 
+@property (nonatomic,strong) UIScrollView *homeScrollView ;
+
 @end

@@ -51,7 +51,7 @@
     for (int i = 0; i < _titles.count; i++) {
         UIButton *tabViewBtn = [[UIButton alloc]initWithFrame:CGRectMake(i*(UISCREENWIDTH/_titles.count), 0, UISCREENWIDTH/_titles.count, 49)] ;
         tabViewBtn.backgroundColor = [UIColor whiteColor] ;
-        NSLog(@"tabViewBtn.frame.size.width %f",tabViewBtn.frame.size.width) ;
+
         //tab图标
         UIImageView *iconView = [[UIImageView alloc] initWithFrame:CGRectMake(((UISCREENWIDTH/_titles.count)-24)/2, 5, 24, 24)] ;
         iconView.contentMode = UIViewContentModeScaleAspectFit ; // 等比宽高
