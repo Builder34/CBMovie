@@ -8,8 +8,6 @@
 
 #import "CBMainViewController.h"
 
-#import "CBBaseNavigationController.h"
-
 #import "CBHomeViewController.h"
 #import "CBNewsViewController.h"
 #import "CBUSAViewController.h"
@@ -18,14 +16,12 @@
 #import "CBCustomTabBarItem.h"
 
 @interface CBMainViewController (){
-    
     UIImageView *_tabBarBackgroundView ; //自定义tabBar的背景图
     NSArray *_viewControllers ;
     NSArray *_icons ;
     NSArray *_titleNames ;
     
     UIView *_selectedBackView  ;  //tabBarItem选中时的背景
-
 }
 
 @end
@@ -45,7 +41,6 @@
 - (void) loadViewContorllers{
     
     CBHomeViewController *homeVC = [[CBHomeViewController alloc] initWithNibName:nil bundle:nil] ;
-    UINavigationController *homeNavigation = [[UINavigationController alloc] initWithRootViewController:homeVC] ;
     
     CBUSAViewController *usaVC = [[CBUSAViewController alloc] initWithNibName:nil bundle:nil] ;
     UINavigationController *usaNavigation = [[UINavigationController alloc] initWithRootViewController:usaVC] ;
@@ -57,7 +52,7 @@
     CBNewsViewController *newsVC = [[CBNewsViewController alloc] init] ;
     UINavigationController *newsNavigation = [[UINavigationController alloc] initWithRootViewController:newsVC] ;
     
-    _viewControllers = @[homeNavigation,usaNavigation,topNavigation,newsNavigation] ;
+    _viewControllers = @[homeVC,usaNavigation,topNavigation,newsNavigation] ;
     _icons = @[@"home",@"usa",@"top250",@"news"] ;
     _titleNames = @[@"热映",@"usa",@"top250",@"新闻"] ;
     

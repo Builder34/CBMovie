@@ -22,6 +22,6 @@
 #define UISCREENHEIGHT [UIScreen mainScreen].bounds.size.height  //屏幕高度
 #define STATUSHEIGHT [UIApplication sharedApplication].statusBarFrame.size.height  //statusBar高度
 
-#define tabBarMainFrame CGRectMake(0, 0, UISCREENWIDTH, UISCREENHEIGHT)  //有tabBar的主体view的Frame
+//#define tabBarMainFrame CGRectMake(0, 0, UISCREENWIDTH, UISCREENHEIGHT)  //有tabBar的主体view的Frame
 
 #endif

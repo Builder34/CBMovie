@@ -20,14 +20,17 @@
 - (instancetype) initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil{
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil] ;
     if(self){
-        self.title = @"新闻" ;
+        
     }
     return self ;
 }
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    UIButton *button = [[UIButton alloc] initWithFrame:CGRectMake(0, 64, UISCREENWIDTH, UISCREENHEIGHT)] ;
+    UIButton *button = [[UIButton alloc] initWithFrame:CGRectMake(0, 64, UISCREENWIDTH, 44)] ;
+    button.backgroundColor = [UIColor grayColor] ;
+    [button setTitle:@"扫描二维码" forState:UIControlStateNormal] ;
+    [button setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal] ;
     [button addTarget:self action:@selector(clickScan:) forControlEvents:UIControlEventTouchUpInside] ;
     [self.view addSubview:button] ;
     

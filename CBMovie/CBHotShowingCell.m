@@ -22,7 +22,5 @@
     
 }
 
-- (IBAction)clickBtn:(id)sender {
 
-}
 @end

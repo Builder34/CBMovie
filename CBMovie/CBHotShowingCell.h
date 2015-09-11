@@ -12,7 +12,5 @@
 @property (weak, nonatomic) IBOutlet UIImageView *movieImage;
 @property (weak, nonatomic) IBOutlet UILabel *movieName;
 @property (weak, nonatomic) IBOutlet UILabel *movieType;
-@property (weak, nonatomic) IBOutlet UIButton *radioButton;
-- (IBAction)clickBtn:(id)sender;
 
 @end
