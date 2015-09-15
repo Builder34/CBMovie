@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		5A1596921BA662D000DA5FBB /* FDSlideBar.m in Sources */ = {isa = PBXBuildFile; fileRef = 5A15968F1BA662D000DA5FBB /* FDSlideBar.m */; };
+		5A1596931BA662D000DA5FBB /* FDSlideBarItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 5A1596911BA662D000DA5FBB /* FDSlideBarItem.m */; };
 		5A2223451B8C62ED000D9BCB /* MKAnnotationView+WebCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 5A2223251B8C62ED000D9BCB /* MKAnnotationView+WebCache.m */; };
 		5A2223461B8C62ED000D9BCB /* NSData+ImageContentType.m in Sources */ = {isa = PBXBuildFile; fileRef = 5A2223271B8C62ED000D9BCB /* NSData+ImageContentType.m */; };
 		5A2223471B8C62ED000D9BCB /* SDImageCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 5A2223291B8C62ED000D9BCB /* SDImageCache.m */; };
@@ -77,6 +79,7 @@
 		5AD5DA711B9D7ADD00C71B23 /* CBTableViewDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = 5AD5DA701B9D7ADD00C71B23 /* CBTableViewDataSource.m */; };
 		5AD7C5AE1B9EA60800D00576 /* CBUsaHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5AD7C5AD1B9EA60800D00576 /* CBUsaHeaderView.m */; };
 		5AD7C5B01B9EA62800D00576 /* CBUsaHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5AD7C5AF1B9EA62800D00576 /* CBUsaHeaderView.xib */; };
+		5AD7ED391BA7FFAF007A3998 /* CBQRCodeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5AD7ED381BA7FFAF007A3998 /* CBQRCodeViewController.m */; };
 		5AD8ABA21BA26B4A0015DFA4 /* RootController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5AD8ABA11BA26B4A0015DFA4 /* RootController.m */; };
 		5AD8ABA51BA280680015DFA4 /* CBTabBarController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5AD8ABA41BA280680015DFA4 /* CBTabBarController.m */; };
 		5AD8E5161BA110AF00DE83D4 /* libzbar.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 5AD8E5101BA110AF00DE83D4 /* libzbar.a */; };
@@ -110,6 +113,10 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		5A15968E1BA662D000DA5FBB /* FDSlideBar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FDSlideBar.h; sourceTree = "<group>"; };
+		5A15968F1BA662D000DA5FBB /* FDSlideBar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FDSlideBar.m; sourceTree = "<group>"; };
+		5A1596901BA662D000DA5FBB /* FDSlideBarItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FDSlideBarItem.h; sourceTree = "<group>"; };
+		5A1596911BA662D000DA5FBB /* FDSlideBarItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FDSlideBarItem.m; sourceTree = "<group>"; };
 		5A2223241B8C62ED000D9BCB /* MKAnnotationView+WebCache.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "MKAnnotationView+WebCache.h"; sourceTree = "<group>"; };
 		5A2223251B8C62ED000D9BCB /* MKAnnotationView+WebCache.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "MKAnnotationView+WebCache.m"; sourceTree = "<group>"; };
 		5A2223261B8C62ED000D9BCB /* NSData+ImageContentType.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSData+ImageContentType.h"; sourceTree = "<group>"; };
@@ -242,6 +249,8 @@
 		5AD7C5AC1B9EA60800D00576 /* CBUsaHeaderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CBUsaHeaderView.h; sourceTree = "<group>"; };
 		5AD7C5AD1B9EA60800D00576 /* CBUsaHeaderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CBUsaHeaderView.m; sourceTree = "<group>"; };
 		5AD7C5AF1B9EA62800D00576 /* CBUsaHeaderView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CBUsaHeaderView.xib; sourceTree = "<group>"; };
+		5AD7ED371BA7FFAF007A3998 /* CBQRCodeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CBQRCodeViewController.h; sourceTree = "<group>"; };
+		5AD7ED381BA7FFAF007A3998 /* CBQRCodeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CBQRCodeViewController.m; sourceTree = "<group>"; };
 		5AD8ABA01BA26B4A0015DFA4 /* RootController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RootController.h; sourceTree = "<group>"; };
 		5AD8ABA11BA26B4A0015DFA4 /* RootController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RootController.m; sourceTree = "<group>"; };
 		5AD8ABA31BA280680015DFA4 /* CBTabBarController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CBTabBarController.h; sourceTree = "<group>"; };
@@ -327,6 +336,17 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		5A15968D1BA662D000DA5FBB /* FDSlideBar */ = {
+			isa = PBXGroup;
+			children = (
+				5A15968E1BA662D000DA5FBB /* FDSlideBar.h */,
+				5A15968F1BA662D000DA5FBB /* FDSlideBar.m */,
+				5A1596901BA662D000DA5FBB /* FDSlideBarItem.h */,
+				5A1596911BA662D000DA5FBB /* FDSlideBarItem.m */,
+			);
+			path = FDSlideBar;
+			sourceTree = "<group>";
+		};
 		5A2223231B8C62ED000D9BCB /* SDWebImage */ = {
 			isa = PBXGroup;
 			children = (
@@ -510,6 +530,8 @@
 				5AD8E5561BA186A000DE83D4 /* CBTitleView.xib */,
 				5AD8ABA01BA26B4A0015DFA4 /* RootController.h */,
 				5AD8ABA11BA26B4A0015DFA4 /* RootController.m */,
+				5AD7ED371BA7FFAF007A3998 /* CBQRCodeViewController.h */,
+				5AD7ED381BA7FFAF007A3998 /* CBQRCodeViewController.m */,
 			);
 			name = util;
 			sourceTree = "<group>";
@@ -517,6 +539,7 @@
 		5AD2FB821B85B6340017CE9A /* 3rd-Party */ = {
 			isa = PBXGroup;
 			children = (
+				5A15968D1BA662D000DA5FBB /* FDSlideBar */,
 				5AD8E4F81BA110AF00DE83D4 /* zbar_iOS7_Fix */,
 				5A2223231B8C62ED000D9BCB /* SDWebImage */,
 				5A96D6991B8AAD7B00F88664 /* UMAnalytics_Sdk_3.5.10 */,
@@ -902,14 +925,17 @@
 				5AD7C5AE1B9EA60800D00576 /* CBUsaHeaderView.m in Sources */,
 				5AD8EFE71B84920A00CC298B /* CBTop250ViewController.m in Sources */,
 				5AD2FBE71B85BCFB0017CE9A /* AFNetworkReachabilityManager.m in Sources */,
+				5AD7ED391BA7FFAF007A3998 /* CBQRCodeViewController.m in Sources */,
 				5A96D6151B87211F00F88664 /* LocationModel.m in Sources */,
 				5ADA02961B7489B00020BFD2 /* ViewController.m in Sources */,
 				5A2223501B8C62ED000D9BCB /* UIImage+MultiFormat.m in Sources */,
+				5A1596931BA662D000DA5FBB /* FDSlideBarItem.m in Sources */,
 				5A2223451B8C62ED000D9BCB /* MKAnnotationView+WebCache.m in Sources */,
 				5A96D61A1B872B3400F88664 /* MovieModel.m in Sources */,
 				5AD2FBF21B85BCFB0017CE9A /* UIImageView+AFNetworking.m in Sources */,
 				5AD8E5551BA1868E00DE83D4 /* CBTitleView.m in Sources */,
 				5A96D60A1B871F4300F88664 /* JSONKeyMapper.m in Sources */,
+				5A1596921BA662D000DA5FBB /* FDSlideBar.m in Sources */,
 				5A22234F1B8C62ED000D9BCB /* UIImage+GIF.m in Sources */,
 				5A96D60B1B871F4300F88664 /* JSONValueTransformer.m in Sources */,
 				5AD2FBF31B85BCFB0017CE9A /* UIProgressView+AFNetworking.m in Sources */,

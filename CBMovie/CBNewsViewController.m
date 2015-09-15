@@ -7,7 +7,7 @@
 //
 
 #import "CBNewsViewController.h"
-
+#import "CBQRCodeViewController.h"
 
 @interface CBNewsViewController ()
 
@@ -38,11 +38,20 @@
 }
 //点击扫描按钮事件
 - (void)clickScan:(id)sender{
-    
+//    CGFloat version = [[UIDevice currentDevice] systemVersion].floatValue ;
+//    //iOS7以上版本使用官方AVFoundation框架实现二维码扫描
+//    if (version > 7.0) {
+//        CBQRCodeViewController *qrCodeVC = [[CBQRCodeViewController alloc]initWithNibName:nil bundle:nil ];
+//        [self presentViewController:qrCodeVC animated:YES completion:nil] ;
+//        return ;
+//    }
+    //iOS7以下使用ZBar开源插件实现二维码扫描
     self.QRCodeReader = [[ZBarReaderViewController alloc] init] ;
     self.QRCodeReader.readerDelegate = self ;
+    self.QRCodeReader.supportedOrientationsMask = ZBarOrientationMaskAll ;
     ZBarImageScanner *scanner = self.QRCodeReader.scanner ;
-    [scanner setSymbology:ZBAR_I25 config:ZBAR_CFG_ENABLE to:0] ;
+    [scanner setSymbology:ZBAR_I25 config:ZBAR_CFG_ENABLE to:1] ;
+    
     [self presentViewController:_QRCodeReader animated:YES completion:nil] ;
     
 }

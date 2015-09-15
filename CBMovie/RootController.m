@@ -20,6 +20,8 @@
     if(self){
         _titleView = [[[NSBundle mainBundle] loadNibNamed:@"CBTitleView" owner:self options:nil] lastObject];
         _titleView.frame = CGRectMake(0, STATUSHEIGHT, UISCREENWIDTH, 44) ;
+        [_titleView.leftButton addTarget:self action:@selector(backAction:) forControlEvents:UIControlEventTouchUpInside] ;
+        
         [self.view addSubview:_titleView] ;
     }
     return self ;
@@ -36,14 +38,14 @@
     // Dispose of any resources that can be recreated.
 }
 
-/*
-#pragma mark - Navigation
 
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
+- (void) backAction:(id)sender{
+    
+    if(!self.navigationController || [[self.navigationController viewControllers] objectAtIndex:0]==self ){
+        [self dismissViewControllerAnimated:YES completion:nil] ;
+    }else if(self.navigationController){
+        [self.navigationController popViewControllerAnimated:YES] ;
+    }
+    
 }
-*/
-
 @end

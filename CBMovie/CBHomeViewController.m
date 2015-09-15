@@ -59,6 +59,7 @@
     
     _lastContentOffsetY = 0 ;
     _oldOffsetY = 0 ;
+    //UIView放在init方法初始化 好像不起作用？为何?
     self.homeScrollView = [[UIScrollView alloc] initWithFrame:CGRectMake(0,64+59, UISCREENWIDTH, UISCREENHEIGHT-64-59-49)] ;
     self.homeScrollView.backgroundColor = [UIColor grayColor] ;
     [self.view addSubview:_homeScrollView] ;
@@ -97,6 +98,7 @@
             NSError *contextError = nil ;
             if (![_context save:&contextError]) {
                 NSLog(@"%@",[contextError localizedDescription]) ;
+                
             }
 //            NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init] ;
 //            NSEntityDescription *entity = [NSEntityDescription entityForName:@"LocationEntity" inManagedObjectContext:_context] ;
@@ -111,7 +113,9 @@
         }
         
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-        //NSLog(@"error : %@",error.description) ;
+        NSLog(@"error : %@",error.description) ;
+        _mbProgress.labelText = @"请求出错";
+        [_mbProgress hide:YES afterDelay:2.0f] ;
     }] ;
 
     [operation start] ;
@@ -128,7 +132,7 @@
     [_locationManager requestAlwaysAuthorization] ; //iOS8 需要添加此句
     
     [_locationManager startUpdatingLocation] ;
-    //NSLog(@"开始定位..") ;
+    NSLog(@"开始定位..") ;
 }
 
 #pragma mark - CLLocationManagerDelegate 
@@ -172,6 +176,11 @@
     [MobClick beginLogPageView:@"PageOne"] ;
 }
 
+- (void) viewDidAppear:(BOOL)animated{
+    [super viewDidAppear:animated] ;
+    [self requestData] ;
+
+}
 //设置布局
 - (void) settingLayout{
     _mainTableView =[[UITableView alloc] initWithFrame:CGRectMake(0, 0, UISCREENWIDTH,self.homeScrollView.frame.size.height) style:UITableViewStylePlain] ;
@@ -183,8 +192,7 @@
     _mainTableView.delegate = self ;
     
     _mainTableView.tableHeaderView = nil ;
-    
-    NSLog(@"_maunTableView y : %f  height : %f",_mainTableView.frame.origin.y,_mainTableView.frame.size.height) ;
+
     [self.homeScrollView addSubview:_mainTableView] ;
 }
 #pragma mark - UITableViewDelegate
