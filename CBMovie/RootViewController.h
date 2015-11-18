@@ -8,11 +8,17 @@
 
 #import <UIKit/UIKit.h>
 #import "CBTitleView.h"
+#import "MBProgressHUD.h"
 
-@interface RootController : UIViewController
+@interface RootViewController : UIViewController
 
 @property (nonatomic,strong) CBTitleView *titleView ; //头部导航视图
 
+@property (nonatomic,strong) MBProgressHUD *hubLoadingView ;
+
 - (instancetype) initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil ;
 
+- (void) showLoadingView ;
+- (void) hideLoadingView ;
+- (void) hideLoadingViewAfterDelay:(CGFloat)delay ;
 @end

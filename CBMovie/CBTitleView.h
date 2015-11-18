@@ -10,6 +10,7 @@
 
 @interface CBTitleView : UIView
 @property (weak, nonatomic) IBOutlet UIButton *leftButton; //导航左按钮
+
 @property (weak, nonatomic) IBOutlet UIButton *rightButton;  //导航右按钮
 
 @property (weak, nonatomic) IBOutlet UILabel *titleLabel;  //导航标题label

@@ -6,23 +6,19 @@
 //  Copyright (c) 2015年 builder34. All rights reserved.
 //
 
-#import "RootController.h"
+#import "RootViewController.h"
 
-@interface RootController ()
+@interface RootViewController ()
 
 @end
 
-@implementation RootController
+@implementation RootViewController
 
 - (instancetype) initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil{
     
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil] ;
     if(self){
-        _titleView = [[[NSBundle mainBundle] loadNibNamed:@"CBTitleView" owner:self options:nil] lastObject];
-        _titleView.frame = CGRectMake(0, STATUSHEIGHT, UISCREENWIDTH, 44) ;
-        [_titleView.leftButton addTarget:self action:@selector(backAction:) forControlEvents:UIControlEventTouchUpInside] ;
-        
-        [self.view addSubview:_titleView] ;
+
     }
     return self ;
     
@@ -30,7 +26,12 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // Do any additional setup after loading the view.
+   
+    _titleView = [[[NSBundle mainBundle] loadNibNamed:@"CBTitleView" owner:self options:nil] lastObject];
+    _titleView.frame = CGRectMake(0, STATUSHEIGHT, UISCREENWIDTH, 44) ;
+    [_titleView.leftButton addTarget:self action:@selector(backAction:) forControlEvents:UIControlEventTouchUpInside] ;
+    
+    [self.view addSubview:_titleView] ;
 }
 
 - (void)didReceiveMemoryWarning {
@@ -48,4 +49,21 @@
     }
     
 }
+
+- (void) showLoadingView{
+    _hubLoadingView = [[MBProgressHUD alloc] init] ;
+    [self.view addSubview:_hubLoadingView] ;
+    _hubLoadingView.labelText = @"加载中..." ;
+    [_hubLoadingView show:YES] ;
+}
+
+- (void) hideLoadingView{
+    [_hubLoadingView hide:YES] ;
+    _hubLoadingView = nil;
+}
+- (void) hideLoadingViewAfterDelay:(CGFloat)delay{
+    [_hubLoadingView hide:YES afterDelay:delay];
+    _hubLoadingView =nil ;
+}
+
 @end

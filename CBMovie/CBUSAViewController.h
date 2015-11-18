@@ -7,8 +7,8 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "RootController.h"
+#import "RootViewController.h"
 
-@interface CBUSAViewController : RootController
+@interface CBUSAViewController : RootViewController
 
 @end

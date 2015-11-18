@@ -7,9 +7,9 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "RootController.h"
+#import "RootViewController.h"
 
-@interface CBHomeViewController : RootController
+@interface CBHomeViewController : RootViewController
 
 @property (nonatomic,strong) UIScrollView *homeScrollView ;
 

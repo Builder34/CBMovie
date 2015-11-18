@@ -33,10 +33,13 @@
     
     CBTabBarController *rootController = [[CBTabBarController alloc] initWithTitles:@[@"首页",@"收藏",@"消息",@"我的"] andIcons:@[@"home",@"news",@"letter",@"setting"]] ;
     CBHomeViewController *homeVC = [[CBHomeViewController alloc]initWithNibName:nil bundle:nil] ;
+    UINavigationController *homeNav = [[UINavigationController alloc] initWithRootViewController:homeVC] ;
+    [homeNav setNavigationBarHidden:YES] ;
+    
     CBUSAViewController *usaVC = [[CBUSAViewController alloc] initWithNibName:nil bundle:nil] ;
     CBNewsViewController *newsVC = [[CBNewsViewController alloc] initWithNibName:nil bundle:nil] ;
     CBTop250ViewController *top250VC = [[CBTop250ViewController alloc] initWithNibName:nil bundle:nil] ;
-    [rootController setViewControllers:@[homeVC,usaVC,newsVC,top250VC] animated:YES] ;
+    [rootController setViewControllers:@[homeNav,usaVC,newsVC,top250VC] animated:YES] ;
     rootController.selectedIndex = 0 ;
     
     self.window.rootViewController = rootController ;
